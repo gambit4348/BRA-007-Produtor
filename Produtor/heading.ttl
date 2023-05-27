@@ -1,0 +1,638 @@
+@prefix : <http://br/mmfdh/ufpr/2022/2/child-safe#> .
+@prefix child-safe: {childsafe_uri} .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@base {childsafe_uri} .
+
+<{childsafe_uri_base}> rdf:type owl:Ontology ;
+                       owl:versionIRI <{childsafe_uri_base}/{childsafe_version}> ;
+                       owl:versionInfo "1.0.0" ;
+                       dc:creator "TSUNODA, Denise Fukumi" ,
+                                  "ARAÚJO, Paula Carina de" ,
+                                  "CESTARI, Jose Marcelo Almeida Prado" ,
+                                  "MARIN, Luciano Heitor Gallegos" ,
+                                  "RAZZOLINI FILHO, Edelvino" ,
+                                  "PECINI, André Custódio" ,
+                                  "CONSTÂNCIO, Alex Sebastião" ,
+                                  "REUSING, Luciana" ,
+                                  "LUNELLI, Karina" ,
+                                  "MARIANO, Erika Liria Matsugano" ,
+                                  "MELO, Allana Kucarz de" ,
+                                  "ROCHA, Mariana Dombeck" ,
+                                  "KOSIBA, Paulo Henrique" ,
+                                  "ABRANTES, Vinícius Villani" ,
+                                  "CEOLIN, Maikel Alef Indio Matozo" ,
+                                  "MACHADO, Lucas Silvestre" ,
+                                  "MARÇAL, Felipe Barreto" ,
+                                  "ROSALES, Alejandro Gemin" ,
+                                  "LIMA, Karolayne Costa Rodrigues de" ;
+                       dc:title "Child-safe: Ontologia de domínio do projeto BRA/01/007 - Observatório Nacional para a Prevenção de Crimes contra a Criança e o Adolescente"@pt-BR ;
+                       dct:created "2022-02-08"^^xsd:date ;
+                       vann:preferredNamespacePrefix "child-safe"@en ;
+                       vann:preferredNamespaceUri "{childsafe_uri_base}#"^^xsd:anyURI ;
+                       rdfs:comment """O objetivo da Child-safe é descrever o domínio relativo aos crimes sexuais contra a criança e o adolescente no Brasil.
+
+Usuários desta ontologia incluem gestores de políticas públicas e estudiosos do assunto que desejam compreender o vocabulário e as relações semânticas aplicáveis a este domínio.
+
+Esta ontologia foi produzida com recursos oriundos do projeto BRA/01/007, com as seguintes participações:
+
+   - Ministério da Mulher, Família e Direitos Humanos (MMFDH)
+   - Progama da Nações Unidas para o Desenvolvimento (PNUD)
+   - Universidade Federal do Paraná (UFPR)
+   - Fundação de Pesquisas Florestais do Paraná (FUPEF)
+"""@pt-BR .
+
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#definedIn
+:definedIn rdf:type owl:AnnotationProperty .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#linkIs
+:linkIs rdf:type owl:AnnotationProperty .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#isRecommendedTerm
+:isRecommendedTerm rdf:type owl:AnnotationProperty .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#sourceIs
+:sourceIs rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_afeta
+:_afeta rdf:type owl:ObjectProperty ;
+        rdfs:domain :_Causa ;
+        rdfs:range :_Sujeito ;
+        rdfs:comment """Identifica que uma '_Causa' afeta de alguma forma um '_Sujeito'.
+
+Indivíduos relacionados por '_afeta' devem ser instância de '_Causa' e '_Sujeito' conforme domain e range.
+
+'_afeta' tem como forma reflexiva '_afetadoPor'.
+"""@pt-br .
+
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_afetadoPor
+:_afetadoPor rdf:type owl:ObjectProperty ;
+             rdfs:domain :_Sujeito ;
+             rdfs:range :_Causa ;
+             rdfs:comment """Identifica que uma '_Causa' afeta de alguma forma um '_Sujeito'.
+
+Indivíduos relacionados por '_afetadoPor' devem ser instância de '_Causa' e '_Sujeito' conforme domain e range.
+
+'_afetadoPor' tem como forma reflexiva '_afeta'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_executa
+:_executa rdf:type owl:ObjectProperty ;
+          owl:inverseOf :_executadoPor ;
+          rdfs:domain :_Agente ;
+          rdfs:range :_Processo ;
+          rdfs:comment """Identifica a execução de um '_Processo' por um '_Agente'.
+
+Indivíduos relacionados por '_executa' devem ser instância de '_Agente' e '_Processo' conforme domain e range.
+
+'_executa' tem como forma reflexiva '_executadoPor'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_executadoContra
+:_executadoContra rdf:type owl:ObjectProperty ;
+                  rdfs:label "é _executado(a) contra"@pt-br ;
+                  rdfs:domain :_Processo ;
+                  rdfs:range :_Sujeito ;
+                  rdfs:comment """Identifica a execução de um '_Processo' sobre um '_Sujeito'.
+
+Indivíduos relacionados por '_executadoContra' devem ser instância de '_Agente' e '_Sujeito' conforme domain e range.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_executadoPor
+:_executadoPor rdf:type owl:ObjectProperty ;
+               rdfs:label "é _executado(a) por"@pt-br ;
+               owl:inverseOf :_executa ;
+               rdfs:domain :_Processo ;
+               rdfs:range :_Agente ;
+               rdfs:comment """Identifica a execução de um '_Processo' por um '_Agente'.
+
+Indivíduos relacionados por '_executadoPor' devem ser instância de '_Agente' e '_Processo' conforme domain e range.
+
+'_executadoPor' tem como forma reflexiva '_executado'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_previne
+:_previne rdf:type owl:ObjectProperty ;
+          owl:inverseOf :_previnidoPor ;
+#          owl:propertyDisjointWith :_provoca ;
+#          owl:propertyDisjointWith :_viabiliza ;
+          rdfs:domain :_Causa ;
+          rdfs:range :_Efeito ;
+          rdfs:comment """Identifica a prevenção de um '_Efeito' por uma '_Causa'.
+
+Indivíduos relacionados por '_previne' devem ser instância de '_Causa' e '_Efeito' conforme domain e range.
+
+'_previne' tem como forma reflexiva '_previnidoPor'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_previnidoPor
+:_previnidoPor rdf:type owl:ObjectProperty ;
+               owl:inverseOf :_previne ;
+               rdfs:label "é _previnido(a) por"@pt-br ;
+               rdfs:domain :_Efeito ;
+               rdfs:range :_Causa ;
+               rdfs:comment """Identifica a prevenção de um '_Efeito' por uma '_Causa'.
+
+Indivíduos relacionados por '_previnidoPor' devem ser instância de '_Causa' e '_Efeito' conforme domain e range.
+
+'_previnidoPor' tem como forma reflexiva '_previne'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_provoca
+:_provoca rdf:type owl:ObjectProperty ;
+          rdf:type owl:TransitiveProperty ;
+          owl:inverseOf :_provocadoPor ;
+          rdfs:domain :_Causa ;
+          rdfs:range :_Efeito ;
+          rdfs:comment """Identifica a provocação de um '_Efeito' por uma '_Causa'.
+
+Indivíduos relacionados por '_provoca' devem ser instância de '_Causa' e '_Efeito' conforme domain e range.
+
+'_provoca' tem como forma reflexiva '_provocadoPor'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_provocadoPor
+:_provocadoPor rdf:type owl:ObjectProperty ;
+               owl:inverseOf :_provoca ;
+               rdfs:label "é _provocado(a) por"@pt-br ;
+               rdfs:domain :_Efeito ;
+               rdfs:range :_Causa ;
+               rdfs:comment """Identifica a provocação de um '_Efeito' por uma '_Causa'.
+
+Indivíduos relacionados por '_provocadoPor' devem ser instância de '_Causa' e '_Efeito' conforme domain e range.
+
+'_provocadoPor' tem como forma reflexiva '_provoca'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_viabiliza
+:_viabiliza rdf:type owl:ObjectProperty ;
+            rdf:type owl:TransitiveProperty ;
+            rdfs:domain :_Causa ;
+            rdfs:range :_Condição ;
+            rdfs:comment """Identifica a oportunidade de uma '_Causa' levar a uma '_Condição'.
+
+Indivíduos relacionados por '_viabiliza' devem ser instância de '_Causa' e '_Condição' conforme domain e range.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#aplicadoEm
+:aplicadoEm rdf:type owl:ObjectProperty ;
+            rdfs:label "é aplicado(a) em"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#atuaEm
+:atuaEm rdf:type owl:ObjectProperty ;
+        rdfs:label "atua em"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#assiste
+:assiste rdf:type owl:ObjectProperty ;
+         rdfs:domain :_Agente ;
+         rdfs:range :_Sujeito ;
+         rdfs:comment """Identifica que um '_Agente' presta assistência a um '_Sujeito'.
+
+Indivíduos relacionados por '_assiste' devem ser instância de '_Agente' e '_Sujeito' conforme domain e range.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#caracteriza
+:caracteriza rdf:type owl:ObjectProperty ;
+             owl:inverseOf :caracterizadoPor .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#caracterizadoPor
+:caracterizadoPor rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :caracteriza ;
+                  rdfs:label "é caracterizado(a) por"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#causa
+:causa rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :_provoca .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#causadoPor
+:causadoPor rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :_provocadoPor ;
+            rdfs:label "é causado(a) por"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#componenteDe
+:componenteDe rdf:type owl:ObjectProperty ;
+              owl:inverseOf :compostoPor ;
+              rdfs:label "é componente de"@pt-br ;
+              rdfs:domain :_Elemento ;
+              rdfs:range :_Todo .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#compostoPor
+:compostoPor rdf:type owl:ObjectProperty ;
+             owl:inverseOf :componenteDe ;
+             rdfs:label "é composto(a) por"@pt-br ;
+             rdfs:domain :_Todo ;
+             rdfs:range :_Elemento .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#confirma
+:confirma rdf:type owl:ObjectProperty ;
+          owl:inverseOf :confirmadoPor .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#confirmadoPor
+:confirmadoPor rdf:type owl:ObjectProperty ;
+               owl:inverseOf :confirma ;
+               rdfs:label "é confirmado(a) por"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#consome
+:consome rdf:type owl:ObjectProperty ;
+         owl:inverseOf :consumidoPor ;
+         rdfs:domain :_Consumidor ;
+         rdfs:range :_Consumível ;
+         rdfs:comment """Identifica que um '_Consumidor' usufrui de um '_Consumível', gratuitamente ou não.
+
+Indivíduos relacionados por 'consome' devem ser instância de '_Consumidor' e '_Consumível' conforme domain e range.
+
+'consome' tem como forma reflexiva 'consumidoPor'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#consumidoPor
+:consumidoPor rdf:type owl:ObjectProperty ;
+              owl:inverseOf :consome ;
+              rdfs:domain :_Consumidor ;
+              rdfs:range :_Consumível ;
+              rdfs:comment """Identifica que um '_Consumível' é usufruído por um '_Consumidor', gratuitamente ou não.
+
+Indivíduos relacionados por 'consumidoPor' devem ser instância de '_Consumidor' e '_Consumível' conforme domain e range.
+
+'consumidoPor' tem como forma reflexiva 'consome'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#definidoPor
+:definidoPor rdf:type owl:ObjectProperty ;
+             rdfs:label "é definido(a) por"@pt-br ;
+             rdfs:domain :_Conceito ;
+             rdfs:range :_Compêndio .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#estimula
+:estimula rdf:type owl:ObjectProperty ;
+          rdfs:domain :_Causa ;
+          rdfs:range :_Efeito .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#evita
+:evita rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf :_previne .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#evitadoPor
+:evitadoPor rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :_previnidoPor ;
+            rdfs:label "é evitado(a) por"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#facilita
+:facilita rdf:type owl:ObjectProperty ;
+          owl:inverseOf :facilitadoPor .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#facilitadoPor
+:facilitadoPor rdf:type owl:ObjectProperty ;
+               owl:inverseOf :facilita ;
+               rdfs:label "é facilitado(a) por"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#gera
+:gera rdf:type owl:ObjectProperty ;
+      rdfs:subPropertyOf :_provoca .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#geradoPor
+:geradoPor rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :_provocadoPor ;
+           rdfs:label "é gerado(a) por"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#gerencia
+:gerencia rdf:type owl:ObjectProperty ;
+          owl:inverseOf :gerenciadoPor ;
+          rdfs:domain :_Agente ;
+          rdfs:range :_Organização .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#gerenciadoPor
+:gerenciadoPor rdf:type owl:ObjectProperty ;
+               owl:inverseOf :gerencia ;
+               rdfs:label "é _gerenciado(a) por"@pt-br ;
+               rdfs:domain :_Organização ;
+               rdfs:range :_Agente .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#inclui
+:inclui rdf:type owl:ObjectProperty ;
+        rdfs:domain :_Todo ;
+        rdfs:range :_Elemento .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#modifica
+:modifica rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :_afeta ;
+          owl:inverseOf :modificadoPor  .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#modificadoPor
+:modificadoPor rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :_afetadoPor ;
+               owl:inverseOf :modifica ;
+               rdfs:label "é modificado(a) por"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#ocorreDurante
+:ocorreDurante rdf:type owl:ObjectProperty ;
+               rdfs:label "ocorre durante"@pt-br ;
+               rdfs:domain :_Condição ;
+               rdfs:range :_Período .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#ocorreEm
+:ocorreEm rdf:type owl:ObjectProperty ;
+          rdfs:label "ocorre em"@pt-br ;
+          rdfs:domain :_Condição ;
+          rdfs:range :_Sujeito .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#pratica
+:pratica rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :_executa .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#praticadoContra
+:praticadoContra rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :_executadoContra ;
+                 rdfs:label "é praticado(a) contra"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#praticadoPor
+:praticadoPor rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :_executadoPor ;
+              rdfs:label "é praticado(a) por"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#podeCausar
+:podeCausar rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :_viabiliza ;
+            rdfs:label "pode causar"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#podeComprometer
+:podeComprometer rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :_afeta ;
+                 rdfs:label "pode comprometer"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#podeConter
+:podeConter rdf:type owl:ObjectProperty ;
+            rdfs:label "pode conter"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#podeGerar
+:podeGerar rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :_viabiliza ;
+           rdfs:label "pode gerar"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#podeSer
+:podeSer rdf:type owl:ObjectProperty ;
+         rdfs:label "pode ser"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#podeSerCausado
+:podeSerCausado rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :_viabiliza ;
+                rdfs:label "pode ser causado(a) por"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#podeSofrer
+:podeSofrer rdf:type owl:ObjectProperty ;
+            rdfs:label "pode sofrer"@pt-br ;
+            rdfs:domain :_Sujeito ;
+            rdfs:range :_Efeito .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#podeSofrerDe
+:podeSofrerDe rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :_viabiliza ;
+              rdfs:label "pode sofrer de"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#relativoA
+:relativoA rdf:type owl:ObjectProperty ;
+           rdfs:label "é relativa(a) a"@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#resisteA
+:resisteA rdf:type owl:ObjectProperty ;
+          rdfs:label "resiste a"@pt-br ;
+          rdfs:domain :_Sujeito ;
+          rdfs:range :_Efeito .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#sofre
+:sofre rdf:type owl:ObjectProperty ;
+       rdfs:label "sofre"@pt-br ;
+       rdfs:domain :_Sujeito ;
+       rdfs:range :_Efeito .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#sofreDe
+:sofreDe rdf:type owl:ObjectProperty;
+         owl:inverseOf :sofridoPor ;
+         rdfs:label "sofre de"@pt-br ;
+         rdfs:domain :_Sujeito ;
+         rdfs:range :_Condição .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#sofridoPor
+:sofridoPor rdf:type owl:ObjectProperty ;
+            owl:inverseOf :sofreDe ;
+            rdfs:label "é sofrido(a) por"@pt-br ;
+            rdfs:domain :_Condição ;
+            rdfs:range :_Sujeito .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#utiliza
+:utiliza rdf:type owl:ObjectProperty ;
+         owl:inverseOf :utilizadoPor ;
+         rdfs:label "utiliza"@pt-br ;
+         rdfs:domain :_Usuário ;
+         rdfs:range :_Consumível .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#utilizadoPor
+:utilizadoPor rdf:type owl:ObjectProperty ;
+              owl:inverseOf :utiliza ;
+              rdfs:label "é utilizado(a) por"@pt-br ;
+              rdfs:domain :_Consumível ;
+              rdfs:range :_Usuário .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#vincula
+:vincula rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :_afeta ;
+         owl:inverseOf :vinculadoPor  .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#vinculadoPor
+:vinculadoPor rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :_afetadoPor ;
+              owl:inverseOf :vincula ;
+              rdfs:label "é vinculado(a) por"@pt-br .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Agente
+:_Agente rdf:type owl:Class ;
+         rdfs:comment """Um '_Agente' é qualquer ente responsável por executar um ato sobre um '_Sujeito'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Causa
+:_Causa rdf:type owl:Class ;
+        rdfs:comment """Uma '_Causa' é evento ou condição que implica na produção de um '_Efeito'.
+
+A assertiva '_Causa' '_provoca' '_Efeito' estabelece a relação entre um '_Efeito' e sua '_Causa'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Compêndio
+:_Compêndio rdf:type owl:Class ;
+            rdfs:comment """Um '_Compêndio' é um construto organizado para a armazenagem e definição de conceitos,
+constituído pela síntese de uma teoria, de ideias fundamentadas, de conhecimentos etc.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Conceito
+:_Conceito rdf:type owl:Class ;
+           rdfs:comment """Um '_Conceito' é uma ideação descritiva de um fato, efeito, condição ou objeto, concretos
+ou abstratos, que são diferenciados de outros por meio de suas propriedades intrínsecas.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Efeito
+:_Condição rdf:type owl:Class ;
+           rdfs:comment """Uma '_Condição' representa um estado diferencial e potencialmente temporário assumido por
+um '_Sujeito'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Consumidor
+:_Consumidor rdf:type owl:Class ;
+             rdfs:comment """Um '_Consumidor' representa uma entidade que usufrui de um '_Consumível'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Consumível
+:_Consumível rdf:type owl:Class ;
+             rdfs:comment """Um '_Consumível' é um produto ou serviço cujas características interessam e são
+usufruídas por um '_Consumidor' ou '_Usuário'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Efeito
+:_Efeito rdf:type owl:Class ;
+         rdfs:comment """Um '_Efeito' é o resultado produzido por uma '_Causa'''.
+
+A assertiva '_Efeito' '_provocadoPor' '_Causa' estabelece a relação entre um '_Efeito' e sua '_Causa'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Elemento
+:_Elemento rdf:type owl:Class ;
+           rdfs:comment """Um '_Elemento' é um objeto que faz parte de um '_Todo'.
+
+O relacionamento entre um '_Elemento' e um '_Todo' se dá por meio de relacionamentos derivados de '_componenteDe'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Organização
+:_Organização rdf:type owl:Class ;
+              rdfs:comment """Uma '_Organização' é qualquer estrutura instituída formal on informalmente que
+promova processos de qualquer tipo para o atingimento de resultados de qualquer tipo, composta por membros em
+qualquer quantidade e com qualquer grau de responsabilidade.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Período
+:_Período rdf:type owl:Class ;
+          rdfs:comment """Um '_Período' é um intervalo de tempo com início definido, seja este absoluto ou relativo.
+
+Um '_Período' tem um início, mas não necessariamente tem um fim. Não se trata necessariamente de
+um intervalo absolutamente delimitado, com datas claramente definidas. Por exemplo a 'Adoledcência' é entendida como
+um período vivenviado por um sujeito dentro de um intervalo de anos (dos 12 aos 18 anos) sem datas específicas.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Processo
+:_Processo rdf:type owl:Class ;
+           rdfs:comment """Um '_Processo' é o ato realizado por um '_Agente'''.
+
+O relacionamento entre um '_Processo' e um '_Agente' se dá por meio de relacionamentos derivados de '_executa'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Sujeito
+:_Sujeito rdf:type owl:Class ;
+          rdfs:comment """Um '_Sujeito' é o objeto da atuação de um ato de um '_Agente'.
+
+O relacionamento entre um '_Sujeito' e um '_Agente' se dá por meio de relacionamentos derivados de '_ato'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Todo
+:_Todo rdf:type owl:Class ;
+       rdfs:comment """Um '_Todo' é um objeto composto por '_Elemento'.
+
+O relacionamento entre um '_Elemento' e um '_Todo' se dá por meio de relacionamentos derivados de '_compostoPor'.
+"""@pt-br .
+
+
+###  http://br/mmfdh/ufpr/2022/2/child-safe#_Usuário
+:_Usuário rdf:type owl:Class ;
+          rdfs:comment """Um '_Usuário' representa uma entidade que utiliza ou tira proveito de um '_Consumível'.
+"""@pt-br .
+
